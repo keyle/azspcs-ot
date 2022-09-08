@@ -308,25 +308,3 @@ char* utoa128(char* dest, u128 v, int base) {
     }
     return strcpy(dest, p);
 }
-
-// int main(int argc, char *argv[])
-// {
-//   struct timespec t0, t1;
-//   __uint128_t g,p,q;
-
-//   assert(argc==3);
-//   p = strtou128__(argv[1],NULL,0);
-//   q = strtou128__(argv[2],NULL,0);
-//   n = p*q;
-//   a = set_128(0, 1);
-
-//   clock_gettime(CLOCK_REALTIME, &t0);
-//   g = pollard_rho_1st(n);
-//   clock_gettime(CLOCK_REALTIME, &t1);
-
-//   pu128(n); printf(": "); pu128(g); printf(" ");
-//   pu128(n/g); printf("\n [%ld] %ldns\n", c,
-//     (t1.tv_sec-t0.tv_sec) * 1000000000 + t1.tv_nsec - t0.tv_nsec);
-
-//   return 0;
-// }

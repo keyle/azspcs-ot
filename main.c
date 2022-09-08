@@ -7,19 +7,6 @@
 #include <string.h>
 #include <time.h>
 
-// char* strrev(char* s) {
-//     if (!s || !*s)
-//         return s;
-//     char* b = s;
-//     char* e = s + strlen(s) - 1;
-//     while (b < e) {
-//         char t = *b;
-//         *b++ = *e;
-//         *e-- = t;
-//     }
-//     return s;
-// }
-
 static char n_str[1024];
 bool is_all_odd_digits(__uint128_t* n);
 __uint128_t find_sum(__uint128_t n);
@@ -32,7 +19,7 @@ int main(int argc, char* argv[]) {
     float timecount;
     char* p_end;
 
-    // resume
+    // ability to resume at n
     if (argc == 2) {
         start = strtoull(argv[1], &p_end, 10);
 
@@ -56,8 +43,6 @@ int main(int argc, char* argv[]) {
         printf(" found sum_start of ");
         pu128(sum_start);
         printf("\n\n");
-        // sum = sum_start - start - start - 1;
-        // start -= 1;
         sum = sum_start - (start) - (start - 1);
         i = start;
     }
