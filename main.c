@@ -1,3 +1,4 @@
+#include "u256.h"
 #include <limits.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -20,14 +21,14 @@
 // }
 
 static char n_str[1024];
-bool is_all_odd_digits(uint64_t* n);
-uint64_t find_sum(uint64_t n);
+bool is_all_odd_digits(__uint128_t* n);
+__uint128_t find_sum(__uint128_t n);
 
 int main(int argc, char* argv[]) {
     clock_t t = clock();
-    uint64_t i;
-    uint64_t start = 1;
-    uint64_t sum = 0;
+    __uint128_t i;
+    __uint128_t start = 1;
+    __uint128_t sum = 0;
     float timecount;
     char* p_end;
 
@@ -40,15 +41,21 @@ int main(int argc, char* argv[]) {
             return 1;
         }
 
-        printf("starting from %llu...\n", start);
+        printf("starting from...");
+        pu128(start);
+        printf("\n");
 
-        uint64_t sum_start = find_sum(start);
+        __uint128_t sum_start = find_sum(start);
         if (!sum_start) {
             printf("oops\n");
             return 1;
         }
 
-        printf("for start at %llu, found sum_start of %llu\n\n", start, sum_start);
+        printf("for start at ");
+        pu128(start);
+        printf(" found sum_start of ");
+        pu128(sum_start);
+        printf("\n\n");
         // sum = sum_start - start - start - 1;
         // start -= 1;
         sum = sum_start - (start) - (start - 1);
@@ -64,15 +71,20 @@ int main(int argc, char* argv[]) {
         if (is_all_odd_digits(&sum)) {
             clock_t diff_t = clock() - t;
             timecount = ((float)diff_t) / CLOCKS_PER_SEC;
-            printf("%fs valid: %llu\n", timecount, i);
+            printf("%fs valid: ", timecount);
+            pu128(i);
+            printf("\t sum ");
+            pu128(sum);
+            printf(" \n");
         }
     }
 
     return 0;
 }
 
-bool is_all_odd_digits(uint64_t* n) {
-    sprintf(n_str, "%llu", *n);
+bool is_all_odd_digits(__uint128_t* n) {
+    // sprintf(n_str, "%llu", *n);
+    puf128(*n, n_str);
 
     if (strchr(n_str, '2') || strchr(n_str, '4') || strchr(n_str, '6') || strchr(n_str, '8') || strchr(n_str, '0')) {
         return false;
@@ -89,9 +101,9 @@ bool is_all_odd_digits(uint64_t* n) {
     return true;
 }
 
-uint64_t find_sum(uint64_t n) {
-    uint64_t sum = 0;
-    uint32_t i;
+__uint128_t find_sum(__uint128_t n) {
+    __uint128_t sum = 0;
+    __uint128_t i;
     for (i = 1; i <= n; i++) {
         sum += i;
         if (i == n) {

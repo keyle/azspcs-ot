@@ -9,8 +9,8 @@ CFILES = main.c
 
 build_osx:
 	$(COMPILER) $(CFILES) $(OSX_OUT) $(WARNINGS)
-	./result
+	./testing
 
 runner:
-	$(COMPILER) $(CFILES) -ffast-math -o "release"
+	$(COMPILER) $(CFILES) -ffast-math -O2 -o "release"
 
