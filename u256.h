@@ -6,6 +6,10 @@
 #include <sys/time.h>
 #include <time.h>
 
+// credit: 95% of the mess below is by Hermann Stamm-Wilbrandt, I added the puf* stuff
+// REF1 https://gist.github.com/Hermann-SW/a20af17ee6666467fe0b5c573dae701d
+// REF2 https://stackoverflow.com/questions/45608424/atoi-for-int128-t-type/45637368#45637368
+
 #define UINT128_C(u) ((__uint128_t)u)
 const __uint128_t UINT128_MAX = UINT128_C(UINT64_MAX) << 64 | UINT64_MAX;
 
